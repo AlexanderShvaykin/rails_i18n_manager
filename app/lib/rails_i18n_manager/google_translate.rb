@@ -3,6 +3,7 @@ module RailsI18nManager
 
     def self.translate(text, from:, to:)
       api_key = RailsI18nManager.config.google_translate_api_key
+      translate_manager = RailsI18nManager.config.translate_manager
 
       if !SUPPORTED_LOCALES.include?(to.to_s) || Rails.env.test? || (api_key.blank? && Rails.env.development?)
         return false
@@ -13,7 +14,7 @@ module RailsI18nManager
         return false
       end
 
-      translated_text = EasyTranslate.translate(text, from: from, to: to, key: api_key)
+      translated_text = translate_manager.translate(text, from: from, to: to, key: api_key)
 
       if translated_text.present?
         ### Replace single quote html entity with single quote character

@@ -2,7 +2,13 @@ module RailsI18nManager
   class Config
 
     @@google_translate_api_key = nil
+    @@translate_manager = EasyTranslate
     mattr_reader :google_translate_api_key
+    mattr_reader :translate_manager
+
+    def self.google_translate_api_key=(val)
+      @@google_translate_api_key = val
+    end
 
     def self.google_translate_api_key=(val)
       @@google_translate_api_key = val
