@@ -10,8 +10,8 @@ module RailsI18nManager
       @@google_translate_api_key = val
     end
 
-    def self.google_translate_api_key=(val)
-      @@google_translate_api_key = val
+    def self.translate_manager=(val)
+      @@translate_manager = val
     end
 
     ### List retrieved from Google Translate (2022)
