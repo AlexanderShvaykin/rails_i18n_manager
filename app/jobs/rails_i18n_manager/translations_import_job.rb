@@ -35,7 +35,11 @@ module RailsI18nManager
         app_record.all_locales.each do |locale|
           split_keys = [locale] + key.split(".").map{|x| x}
 
-          val = translations_hash.dig(*split_keys)
+          begin
+            val = translations_hash.dig(*split_keys)
+          rescue StandardError
+            raise "Invalid keys: #{split_keys}"
+          end
 
           if val.present?
             val_record = key_record.translation_values.detect{|x| x.locale == locale.to_s }
